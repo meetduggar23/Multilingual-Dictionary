@@ -8,7 +8,6 @@ import {
   EyeOff,
   Flame,
   Globe,
-  GraduationCap,
   Heart,
   Lock,
   Mail,
@@ -17,6 +16,7 @@ import {
   Star,
   Zap,
 } from 'lucide-react';
+import { Navbar } from '@/components/navbar/Navbar';
 import { api } from '@/services/apiClient';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -62,15 +62,6 @@ function MicrosoftLogo({ className }: { className?: string }) {
     </svg>
   );
 }
-
-const benefits = [
-  'Sync favorites',
-  'Daily word reminders',
-  'AI chat history',
-  'Quiz progress',
-  'Vocabulary statistics',
-  'Personalized recommendations',
-];
 
 const socials = [
   { label: 'Google', Icon: GoogleLogo },
@@ -125,7 +116,7 @@ export default function LoginPage() {
   }, [email, password, navigate]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#FAF7F2]">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#FAF7F2] lg:h-screen lg:overflow-hidden">
       {/* Background */}
       <div className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-100/70 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-40 -right-32 h-[480px] w-[480px] rounded-full bg-amber-100/60 blur-3xl" />
@@ -140,62 +131,161 @@ export default function LoginPage() {
         />
       ))}
 
-      {/* Header */}
-      <header className="relative z-10 mx-auto flex h-[88px] w-full max-w-[1400px] items-center justify-between px-6 sm:px-10 lg:px-12 xl:px-16">
-        <Link to="/" className="flex items-center gap-0.5">
-          <span className="font-display text-[30px] font-extrabold tracking-tight text-navy">D</span>
-          <span className="text-[30px] font-extrabold text-orange-500">.</span>
-        </Link>
-        <div className="flex items-center gap-3">
-          <span className="hidden text-[14px] font-medium text-navy/45 sm:block">
-            New to D. Dictionary?
-          </span>
-          <Link
-            to="/register"
-            className="group flex h-11 items-center gap-2 rounded-full border border-cream-400 bg-white px-6 text-[14px] font-semibold text-navy shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card"
-          >
-            Sign Up
-            <ArrowRight className="h-4 w-4 text-orange-500 transition-transform duration-200 group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-      </header>
+      <Navbar />
 
-      <main className="relative mx-auto flex w-full max-w-[1400px] flex-col lg:flex-row lg:items-center">
-        {/* LEFT — Auth Card */}
-        <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="flex w-full flex-col justify-center px-6 py-10 sm:px-10 lg:w-[45%] lg:px-12 lg:py-20 xl:px-16"
-        >
-          <div className="w-full max-w-[480px]">
+      <main className="flex min-h-0 flex-1">
+        <div className="mx-auto flex min-h-0 w-full max-w-[1400px]">
+          {/* LEFT — 55% Illustration */}
+          <section className="hidden min-h-0 flex-1 items-center justify-center px-6 lg:flex lg:px-10 xl:px-14">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.15 }}
-              className="rounded-[28px] border border-cream-400 bg-white p-8 shadow-elevated sm:p-10"
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              className="relative h-[520px] w-full max-w-[560px] short:h-[430px]"
             >
-              <div className="mb-8">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange">
-                  <GraduationCap className="h-7 w-7 text-white" />
+              {/* Backdrop */}
+              <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-orange-100 via-cream-100 to-white shadow-elevated" />
+              <div className="absolute inset-5 rounded-[40px] border-2 border-dashed border-orange-200/80" />
+
+              {/* Glow blobs */}
+              <div className="pointer-events-none absolute left-8 top-10 h-40 w-40 rounded-full bg-orange-300/30 blur-2xl" />
+              <div className="pointer-events-none absolute bottom-12 right-8 h-48 w-48 rounded-full bg-amber-200/40 blur-2xl" />
+
+              {/* Central book */}
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute left-1/2 top-1/2 flex h-44 w-44 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[36px] bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange short:h-36 short:w-36"
+              >
+                <BookMarked className="h-20 w-20 text-white short:h-16 short:w-16" strokeWidth={1.5} />
+                <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card short:h-10 short:w-10">
+                  <Sparkles className="h-6 w-6 text-orange-500 short:h-5 short:w-5" />
+                </span>
+                <span className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-2xl bg-white px-3.5 py-2 shadow-card">
+                  <Zap className="h-4 w-4 text-amber-500" />
+                  <span className="text-[12px] font-bold text-navy">AI Powered</span>
+                </span>
+              </motion.div>
+
+              {/* Floating word chips */}
+              {floatingWords.map(({ word, pos, delay }, i) => (
+                <motion.span
+                  key={word}
+                  animate={{ y: [0, -10, 0], opacity: [0.45, 1, 0.45] }}
+                  transition={{ duration: 4 + i, repeat: Infinity, delay, ease: 'easeInOut' }}
+                  className={cn(
+                    'absolute rounded-2xl bg-white/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur short:px-3 short:py-2 short:text-[13px]',
+                    pos,
+                  )}
+                >
+                  <span className="text-orange-500">#</span> {word}
+                </motion.span>
+              ))}
+
+              {/* Floating cards */}
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                className="absolute left-[6%] top-[40%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50">
+                  <Heart className="h-4 w-4 text-rose-500" />
+                </span>
+                <div>
+                  <p className="text-[12px] font-bold text-navy">Favorites</p>
+                  <p className="text-[11px] text-navy/40">48 words saved</p>
                 </div>
-                <h1 className="font-display text-[34px] font-extrabold tracking-tight text-navy">
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
+                className="absolute right-[6%] top-[26%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-50">
+                  <Flame className="h-4 w-4 text-orange-500" />
+                </span>
+                <div>
+                  <p className="text-[12px] font-bold text-navy">Streak</p>
+                  <p className="text-[11px] text-navy/40">18 days</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                className="absolute bottom-[14%] right-[10%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50">
+                  <ShieldCheck className="h-4 w-4 text-emerald-500" />
+                </span>
+                <div>
+                  <p className="text-[12px] font-bold text-navy">AI Verified</p>
+                  <p className="text-[11px] text-navy/40">Def &amp; examples</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
+                className="absolute bottom-[20%] left-[8%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+              >
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50">
+                  <Globe className="h-4 w-4 text-sky-500" />
+                </span>
+                <div>
+                  <p className="text-[12px] font-bold text-navy">100+ Languages</p>
+                  <p className="text-[11px] text-navy/40">Global vocabulary</p>
+                </div>
+              </motion.div>
+
+              {/* Star rating chip */}
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
+                className="absolute right-[24%] bottom-[38%] flex items-center gap-1 rounded-full bg-white px-3 py-1.5 shadow-card"
+              >
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
+                ))}
+                <span className="ml-1 text-[11px] font-bold text-navy/60">4.9</span>
+              </motion.div>
+
+              {/* Bottom caption */}
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center">
+                <p className="text-[13px] font-semibold text-navy/40">
+                  Learn a language, one word at a time.
+                </p>
+              </div>
+            </motion.div>
+          </section>
+
+          {/* RIGHT — 45% Login Card */}
+          <section className="flex min-h-0 w-full items-center justify-center px-6 py-10 sm:px-10 lg:w-[45%] lg:px-8 lg:py-10 xl:px-12">
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+              className="w-full max-w-[460px] max-h-[760px] rounded-[28px] border border-cream-400 bg-white p-8 shadow-elevated short:p-6"
+            >
+              <div className="text-center">
+                <h1 className="font-display text-[48px] font-extrabold tracking-tight text-navy leading-[1.05] short:text-[34px]">
                   Welcome Back<span className="text-orange-500">.</span>
                 </h1>
-                <p className="mt-2 text-[15px] text-navy/45">
+                <p className="mt-2 text-[16px] text-navy/45 short:mt-1.5">
                   Continue your AI vocabulary journey.
                 </p>
               </div>
 
               {/* Social login */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="mt-6 grid grid-cols-3 gap-3 short:mt-4">
                 {socials.map(({ label, Icon }) => (
                   <button
                     key={label}
                     type="button"
                     aria-label={`Continue with ${label}`}
                     title={`Continue with ${label}`}
-                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card"
+                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card short:h-[46px]"
                   >
                     <Icon className="h-[22px] w-[22px]" />
                   </button>
@@ -203,7 +293,7 @@ export default function LoginPage() {
               </div>
 
               {/* Divider */}
-              <div className="my-7 flex items-center gap-4">
+              <div className="my-5 flex items-center gap-4 short:my-4">
                 <span className="h-px flex-1 bg-cream-400" />
                 <span className="text-[12px] font-semibold uppercase tracking-wider text-navy/35">
                   or sign in with email
@@ -211,11 +301,10 @@ export default function LoginPage() {
                 <span className="h-px flex-1 bg-cream-400" />
               </div>
 
-              <form onSubmit={handleLogin} className="space-y-4">
+              <form onSubmit={handleLogin}>
+                {/* Email */}
                 <div>
-                  <label className="mb-1.5 block text-[13px] font-semibold text-navy">
-                    Email Address
-                  </label>
+                  <label className="mb-1.5 block text-[14px] font-semibold text-navy">Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-navy/30" />
                     <input
@@ -223,15 +312,14 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="input-premium pl-11"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-4 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200 short:h-[46px]"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="mb-1.5 block text-[13px] font-semibold text-navy">
-                    Password
-                  </label>
+                {/* Password */}
+                <div className="mt-4 short:mt-3">
+                  <label className="mb-1.5 block text-[14px] font-semibold text-navy">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-navy/30" />
                     <input
@@ -239,7 +327,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="input-premium pl-11 pr-12"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-12 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200 short:h-[46px]"
                     />
                     <button
                       type="button"
@@ -252,7 +340,8 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
+                {/* Remember / Forgot */}
+                <div className="mt-4 flex items-center justify-between short:mt-3">
                   <label className="flex cursor-pointer items-center gap-2.5 select-none">
                     <input
                       type="checkbox"
@@ -260,18 +349,19 @@ export default function LoginPage() {
                       onChange={(e) => setRemember(e.target.checked)}
                       className="h-4 w-4 rounded border-cream-400 accent-orange-500"
                     />
-                    <span className="text-[13px] font-medium text-navy/60">Remember me</span>
+                    <span className="text-[14px] font-medium text-navy/60">Remember me</span>
                   </label>
-                  <button type="button" className="text-[13px] font-semibold text-orange-500 hover:underline">
+                  <button type="button" className="text-[14px] font-semibold text-orange-500 hover:underline">
                     Forgot Password?
                   </button>
                 </div>
 
+                {/* Continue */}
                 <button
                   type="submit"
                   disabled={loading}
                   className={cn(
-                    'group flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200',
+                    'group mt-5 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 short:mt-4 short:h-[48px]',
                     'hover:scale-[1.02] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40',
                     'disabled:opacity-50 disabled:hover:scale-100',
                   )}
@@ -287,165 +377,15 @@ export default function LoginPage() {
                 </button>
               </form>
 
-              <p className="mt-7 text-center text-[14px] text-navy/45">
+              <p className="mt-5 text-center text-[14px] text-navy/45 short:mt-4">
                 Don't have an account?{' '}
                 <Link to="/register" className="font-semibold text-orange-500 hover:underline">
                   Create one
                 </Link>
               </p>
             </motion.div>
-
-            {/* Benefits panel */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut', delay: 0.35 }}
-              className="mt-6 rounded-[24px] border border-orange-100 bg-gradient-to-br from-orange-50 to-white p-6"
-            >
-              <div className="mb-4 flex items-center gap-2.5">
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500 text-white shadow-glow-orange">
-                  <Flame className="h-4 w-4" />
-                </span>
-                <h3 className="font-display text-[16px] font-bold text-navy">Your Learning Benefits</h3>
-              </div>
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {benefits.map((b) => (
-                  <div key={b} className="flex items-center gap-2 text-[13px] font-medium text-navy/60">
-                    <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    </span>
-                    {b}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* RIGHT — 3D Illustration */}
-        <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-          className="hidden w-full flex-col items-center justify-center px-10 pb-16 lg:flex lg:w-[55%] lg:py-20 xl:px-16"
-        >
-          <div className="relative h-[560px] w-full max-w-[620px]">
-            {/* Backdrop */}
-            <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-orange-100 via-cream-100 to-white shadow-elevated" />
-            <div className="absolute inset-5 rounded-[40px] border-2 border-dashed border-orange-200/80" />
-
-            {/* Glow blobs */}
-            <div className="pointer-events-none absolute left-8 top-10 h-40 w-40 rounded-full bg-orange-300/30 blur-2xl" />
-            <div className="pointer-events-none absolute bottom-12 right-8 h-48 w-48 rounded-full bg-amber-200/40 blur-2xl" />
-
-            {/* Central book */}
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute left-1/2 top-1/2 flex h-44 w-44 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[36px] bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange"
-            >
-              <BookMarked className="h-20 w-20 text-white" strokeWidth={1.5} />
-              <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card">
-                <Sparkles className="h-6 w-6 text-orange-500" />
-              </span>
-              <span className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-2xl bg-white px-3.5 py-2 shadow-card">
-                <Zap className="h-4 w-4 text-amber-500" />
-                <span className="text-[12px] font-bold text-navy">AI Powered</span>
-              </span>
-            </motion.div>
-
-            {/* Floating word chips */}
-            {floatingWords.map(({ word, pos, delay }, i) => (
-              <motion.span
-                key={word}
-                animate={{ y: [0, -10, 0], opacity: [0.45, 1, 0.45] }}
-                transition={{ duration: 4 + i, repeat: Infinity, delay, ease: 'easeInOut' }}
-                className={cn(
-                  'absolute rounded-2xl bg-white/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur',
-                  pos,
-                )}
-              >
-                <span className="text-orange-500">#</span> {word}
-              </motion.span>
-            ))}
-
-            {/* Floating cards */}
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-              className="absolute left-[6%] top-[40%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50">
-                <Heart className="h-4 w-4 text-rose-500" />
-              </span>
-              <div>
-                <p className="text-[12px] font-bold text-navy">Favorites</p>
-                <p className="text-[11px] text-navy/40">48 words saved</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
-              className="absolute right-[6%] top-[26%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-50">
-                <Flame className="h-4 w-4 text-orange-500" />
-              </span>
-              <div>
-                <p className="text-[12px] font-bold text-navy">Streak</p>
-                <p className="text-[11px] text-navy/40">18 days</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-              className="absolute bottom-[14%] right-[10%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50">
-                <ShieldCheck className="h-4 w-4 text-emerald-500" />
-              </span>
-              <div>
-                <p className="text-[12px] font-bold text-navy">AI Verified</p>
-                <p className="text-[11px] text-navy/40">Def &amp; examples</p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
-              className="absolute bottom-[20%] left-[8%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50">
-                <Globe className="h-4 w-4 text-sky-500" />
-              </span>
-              <div>
-                <p className="text-[12px] font-bold text-navy">100+ Languages</p>
-                <p className="text-[11px] text-navy/40">Global vocabulary</p>
-              </div>
-            </motion.div>
-
-            {/* Star rating chip */}
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
-              className="absolute right-[24%] bottom-[38%] flex items-center gap-1 rounded-full bg-white px-3 py-1.5 shadow-card"
-            >
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-              ))}
-              <span className="ml-1 text-[11px] font-bold text-navy/60">4.9</span>
-            </motion.div>
-
-            {/* Bottom caption */}
-            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-center">
-              <p className="text-[13px] font-semibold text-navy/40">
-                Learn a language, one word at a time.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+          </section>
+        </div>
       </main>
     </div>
   );
