@@ -10,9 +10,6 @@ export default {
         '2xl': '1280px',
       },
     },
-    screens: {
-      'short': { 'max-height': '900px' },
-    },
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],

@@ -141,7 +141,7 @@ export default function LoginPage() {
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="relative h-[520px] w-full max-w-[560px] short:h-[430px]"
+              className="relative h-[520px] w-full max-w-[560px]"
             >
               {/* Backdrop */}
               <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-orange-100 via-cream-100 to-white shadow-elevated" />
@@ -155,11 +155,11 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, -12, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute left-1/2 top-1/2 flex h-44 w-44 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[36px] bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange short:h-36 short:w-36"
+                className="absolute left-1/2 top-1/2 flex h-44 w-44 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[36px] bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange"
               >
-                <BookMarked className="h-20 w-20 text-white short:h-16 short:w-16" strokeWidth={1.5} />
-                <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card short:h-10 short:w-10">
-                  <Sparkles className="h-6 w-6 text-orange-500 short:h-5 short:w-5" />
+                <BookMarked className="h-20 w-20 text-white" strokeWidth={1.5} />
+                <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card">
+                  <Sparkles className="h-6 w-6 text-orange-500" />
                 </span>
                 <span className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-2xl bg-white px-3.5 py-2 shadow-card">
                   <Zap className="h-4 w-4 text-amber-500" />
@@ -174,7 +174,7 @@ export default function LoginPage() {
                   animate={{ y: [0, -10, 0], opacity: [0.45, 1, 0.45] }}
                   transition={{ duration: 4 + i, repeat: Infinity, delay, ease: 'easeInOut' }}
                   className={cn(
-                    'absolute rounded-2xl bg-white/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur short:px-3 short:py-2 short:text-[13px]',
+                    'absolute rounded-2xl bg-white/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur',
                     pos,
                   )}
                 >
@@ -266,26 +266,26 @@ export default function LoginPage() {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-              className="w-full max-w-[460px] max-h-[760px] rounded-[28px] border border-cream-400 bg-white p-8 shadow-elevated short:p-6"
+              className="w-full max-w-[460px] max-h-[760px] rounded-[28px] border border-cream-400 bg-white p-8 shadow-elevated"
             >
               <div className="text-center">
-                <h1 className="font-display text-[48px] font-extrabold tracking-tight text-navy leading-[1.05] short:text-[34px]">
+                <h1 className="font-display text-[48px] font-extrabold tracking-tight text-navy leading-[1.05]">
                   Welcome Back<span className="text-orange-500">.</span>
                 </h1>
-                <p className="mt-2 text-[16px] text-navy/45 short:mt-1.5">
+                <p className="mt-2 text-[16px] text-navy/45">
                   Continue your AI vocabulary journey.
                 </p>
               </div>
 
               {/* Social login */}
-              <div className="mt-6 grid grid-cols-3 gap-3 short:mt-4">
+              <div className="mt-6 grid grid-cols-3 gap-3">
                 {socials.map(({ label, Icon }) => (
                   <button
                     key={label}
                     type="button"
                     aria-label={`Continue with ${label}`}
                     title={`Continue with ${label}`}
-                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card short:h-[46px]"
+                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card"
                   >
                     <Icon className="h-[22px] w-[22px]" />
                   </button>
@@ -293,7 +293,7 @@ export default function LoginPage() {
               </div>
 
               {/* Divider */}
-              <div className="my-5 flex items-center gap-4 short:my-4">
+              <div className="my-5 flex items-center gap-4">
                 <span className="h-px flex-1 bg-cream-400" />
                 <span className="text-[12px] font-semibold uppercase tracking-wider text-navy/35">
                   or sign in with email
@@ -312,13 +312,13 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-4 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200 short:h-[46px]"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-4 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
                     />
                   </div>
                 </div>
 
                 {/* Password */}
-                <div className="mt-4 short:mt-3">
+                <div className="mt-4">
                   <label className="mb-1.5 block text-[14px] font-semibold text-navy">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-navy/30" />
@@ -327,7 +327,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-12 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200 short:h-[46px]"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-12 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
                     />
                     <button
                       type="button"
@@ -341,7 +341,7 @@ export default function LoginPage() {
                 </div>
 
                 {/* Remember / Forgot */}
-                <div className="mt-4 flex items-center justify-between short:mt-3">
+                <div className="mt-4 flex items-center justify-between">
                   <label className="flex cursor-pointer items-center gap-2.5 select-none">
                     <input
                       type="checkbox"
@@ -361,7 +361,7 @@ export default function LoginPage() {
                   type="submit"
                   disabled={loading}
                   className={cn(
-                    'group mt-5 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 short:mt-4 short:h-[48px]',
+                    'group mt-5 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200',
                     'hover:scale-[1.02] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40',
                     'disabled:opacity-50 disabled:hover:scale-100',
                   )}
@@ -377,7 +377,7 @@ export default function LoginPage() {
                 </button>
               </form>
 
-              <p className="mt-5 text-center text-[14px] text-navy/45 short:mt-4">
+              <p className="mt-5 text-center text-[14px] text-navy/45">
                 Don't have an account?{' '}
                 <Link to="/register" className="font-semibold text-orange-500 hover:underline">
                   Create one
