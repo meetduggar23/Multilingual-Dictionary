@@ -10,6 +10,8 @@ import AIAssistantPage from '@/pages/AIAssistantPage';
 import ProfilePage from '@/pages/ProfilePage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
+import PrivacyPage from '@/pages/PrivacyPage';
+import TermsPage from '@/pages/TermsPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -24,5 +26,7 @@ export const router = createBrowserRouter([
   { path: '/profile', element: <ProfilePage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
+  { path: '/privacy', element: <PrivacyPage /> },
+  { path: '/terms', element: <TermsPage /> },
   { path: '*', element: <NotFoundPage /> },
 ]);
