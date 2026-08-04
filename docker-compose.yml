@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dictionary-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dictionary
+      POSTGRES_PASSWORD: dictionary
+      POSTGRES_DB: dictionary
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U dictionary -d dictionary']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: dictionary-server
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgresql://dictionary:dictionary@postgres:5432/dictionary
+      JWT_SECRET: ${JWT_SECRET:-change-me-to-a-long-random-string}
+      JWT_EXPIRES_IN: 7d
+    ports:
+      - '5000:5000'
+
+volumes:
+  pgdata:
