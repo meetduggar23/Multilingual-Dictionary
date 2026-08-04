@@ -39,8 +39,6 @@ function FooterLink({ label, to }: { label: string; to: string }) {
 }
 
 export function Footer() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="border-t border-cream-400/50 bg-white/70 backdrop-blur-xl">
       <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-12 xl:px-16">
@@ -114,7 +112,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream-400/50 pt-6 sm:flex-row">
-          <p className="text-xs text-navy/30">© {year} D. Dictionary AI. All rights reserved.</p>
+          <p className="text-xs text-navy/30">© 2022 D. Dictionary AI. All rights reserved.</p>
           <div className="flex items-center gap-5">
             <Link to="/privacy" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
               Privacy Policy

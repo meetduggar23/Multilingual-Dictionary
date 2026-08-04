@@ -57,6 +57,7 @@ export default function PrivacyPage() {
       subtitle="How D. Dictionary AI collects, uses, and protects your information."
       icon={ShieldCheck}
       updated="August 4, 2026"
+      current="privacy"
       sections={sections}
     />
   );

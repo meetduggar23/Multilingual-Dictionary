@@ -74,6 +74,7 @@ export default function TermsPage() {
       subtitle="The rules and guidelines for using D. Dictionary AI."
       icon={Scale}
       updated="August 4, 2026"
+      current="terms"
       sections={sections}
     />
   );
