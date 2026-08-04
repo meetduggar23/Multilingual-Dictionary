@@ -24,6 +24,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Logo } from '@/components/common/Logo';
 
 interface MenuItem {
   label: string;
@@ -179,16 +180,7 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/75 backdrop-blur-xl border-b border-cream-400/60">
       <div className="mx-auto flex h-[84px] max-w-[1400px] items-center justify-between px-6 lg:px-12 xl:px-16">
         {/* Logo */}
-        <Link
-          to="/"
-          onClick={handleLogoClick}
-          aria-label="D. Dictionary AI"
-          className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] bg-navy transition-all duration-200 hover:scale-[1.03] mr-4"
-        >
-          <span className="font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[28px] font-black leading-none tracking-[-1px] text-white select-none">
-            D<span className="text-[#F97316] transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.9)]">.</span>
-          </span>
-        </Link>
+        <Logo onClick={handleLogoClick} className="mr-4" />
 
         {/* Center nav — desktop */}
         <div className="hidden lg:flex items-center justify-center flex-1">

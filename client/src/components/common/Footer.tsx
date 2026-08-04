@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Github, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Logo } from '@/components/common/Logo';
 
 const exploreLinks = [
   { label: 'AI Dictionary', to: '/dictionary' },
@@ -45,10 +46,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-0.5">
-              <span className="font-display text-[28px] font-extrabold tracking-tight text-navy">D</span>
-              <span className="text-[28px] font-extrabold text-orange-500">.</span>
-            </Link>
+            <Logo size="md" />
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-navy/45">
               The AI-powered multilingual dictionary that helps you learn 100+ languages, one word
               at a time.
