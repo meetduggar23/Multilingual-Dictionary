@@ -16,8 +16,8 @@ const learnLinks = [
 ];
 
 const legalLinks = [
-  { label: 'Privacy Policy', to: '/privacy' },
-  { label: 'Terms of Service', to: '/terms' },
+  { label: 'Privacy Policy', to: '/privacy-policy' },
+  { label: 'Terms of Service', to: '/terms-of-service' },
 ];
 
 const socials = [
@@ -114,10 +114,10 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream-400/50 pt-6 sm:flex-row">
           <p className="text-xs text-navy/30">© 2022 D. Dictionary AI. All rights reserved.</p>
           <div className="flex items-center gap-5">
-            <Link to="/privacy" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
+            <Link to="/privacy-policy" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
+            <Link to="/terms-of-service" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
               Terms of Service
             </Link>
           </div>
