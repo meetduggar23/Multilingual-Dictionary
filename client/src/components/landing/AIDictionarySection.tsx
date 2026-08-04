@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { DictionaryEditor } from '@/components/dictionary/DictionaryEditor';
-import { FeatureCards } from '@/components/common/FeatureCards';
 
 export function AIDictionarySection() {
   return (
-    <section id="ai-dictionary" className="scroll-mt-20 py-10">
+    <section id="ai-dictionary" className="scroll-mt-20 py-4">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Breadcrumb
           items={[
@@ -23,9 +21,6 @@ export function AIDictionarySection() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-10"
         >
-          <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-orange-50 mb-5">
-            <Sparkles className="h-7 w-7 text-orange-500" />
-          </div>
           <h1 className="font-display text-[36px] sm:text-[44px] font-extrabold text-navy">
             AI Dictionary
           </h1>
@@ -36,7 +31,6 @@ export function AIDictionarySection() {
       </div>
 
       <DictionaryEditor />
-      <FeatureCards />
     </section>
   );
 }

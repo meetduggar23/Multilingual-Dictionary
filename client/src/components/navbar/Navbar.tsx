@@ -39,6 +39,7 @@ interface NavItem {
   target?: string;
   to?: string;
   items?: MenuItem[];
+  iconOnly?: boolean;
 }
 
 const aiTools: MenuItem[] = [
@@ -60,7 +61,7 @@ const learn: MenuItem[] = [
 ];
 
 const navItems: NavItem[] = [
-  { label: 'Home', icon: Home, type: 'scroll', target: 'home' },
+  { label: 'Home', icon: Home, type: 'scroll', target: 'home', iconOnly: true },
   { label: 'Dictionary', icon: Search, type: 'scroll', target: 'ai-dictionary' },
   { label: 'AI Tools', icon: Sparkles, type: 'dropdown', items: aiTools },
   { label: 'Learn', icon: Brain, type: 'dropdown', items: learn },
@@ -268,13 +269,14 @@ export function Navbar() {
                 <button
                   key={item.label}
                   onClick={() => handleNav(item)}
+                  title={item.label}
                   className={cn(
                     'group relative flex items-center gap-1.5 py-2 text-[14px] font-medium transition-colors duration-200 cursor-pointer rounded-full',
                     active ? 'text-orange-500' : 'text-navy/70 hover:text-navy',
                   )}
                 >
                   <Icon className="h-[17px] w-[17px]" />
-                  {item.label}
+                  {!item.iconOnly && item.label}
                   <span
                     className={cn(
                       'absolute left-0 -bottom-0.5 h-0.5 rounded-full bg-orange-500 transition-all duration-300',
@@ -293,7 +295,6 @@ export function Navbar() {
             onClick={() => scrollToSection('ai-dictionary')}
             className="hidden md:inline-flex h-12 w-[150px] xl:w-[164px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:scale-[1.03] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40 cursor-pointer"
           >
-            <Sparkles className="h-4 w-4" />
             Get Started
           </button>
 
@@ -398,7 +399,6 @@ export function Navbar() {
                   }}
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 cursor-pointer"
                 >
-                  <Sparkles className="h-4 w-4" />
                   Get Started
                 </button>
               </div>
