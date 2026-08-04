@@ -11,14 +11,6 @@ export function Hero() {
       >
         AI-Dictionary
       </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-        className="mt-4 text-[17px] sm:text-lg text-orange-500 font-medium max-w-xl"
-      >
-        Generate fast and accurate definitions of any word.
-      </motion.p>
     </section>
   );
 }

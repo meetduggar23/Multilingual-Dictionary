@@ -31,6 +31,20 @@ export interface TranslationResult {
   targetLang: string;
 }
 
+export interface QuizQuestion {
+  question: string;
+  options: string[];
+  answer: string;
+  explanation?: string;
+}
+
+export interface Quiz {
+  id: string;
+  length: number;
+  difficulty: string;
+  questions: QuizQuestion[];
+}
+
 export async function searchWord(word: string, language = 'en'): Promise<DictionaryEntry[]> {
   const data = await api.get<{ word: string; language: string; entries: DictionaryEntry[] }>(
     `/dictionary/search?word=${encodeURIComponent(word)}&language=${language}`,
@@ -58,12 +72,7 @@ export async function translate(text: string, targetLang: string, sourceLang?: s
 }
 
 export async function generateQuiz(length = 10, difficulty = 'mixed') {
-  return api.get<{
-    id: string;
-    length: number;
-    difficulty: string;
-    questions: { question: string; options: string[]; answer: string; explanation?: string }[];
-  }>(`/quiz/generate?length=${length}&difficulty=${difficulty}`);
+  return api.get<Quiz>(`/quiz/generate?length=${length}&difficulty=${difficulty}`);
 }
 
 export async function getDailyWord() {
@@ -83,7 +92,7 @@ export async function getFavorites() {
 }
 
 export async function addFavorite(word: string, language = 'en') {
-  return api.post('/favorites', { word, language });
+  return api.post<{ favorite: any }>('/favorites', { word, language });
 }
 
 export async function removeFavorite(id: string) {

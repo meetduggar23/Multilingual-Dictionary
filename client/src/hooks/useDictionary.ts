@@ -17,6 +17,7 @@ import {
   type DictionaryEntry,
   type RelatedWords,
   type Suggestion,
+  type Quiz,
 } from '@/services/dictionaryApi';
 
 export function useDictionary() {
@@ -151,7 +152,7 @@ export function useHistory() {
 }
 
 export function useQuiz() {
-  const [quiz, setQuiz] = useState<any>(null);
+  const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [loading, setLoading] = useState(false);
 
   const generate = useCallback(async (length = 10, difficulty = 'mixed') => {
