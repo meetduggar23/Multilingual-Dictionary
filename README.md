@@ -42,9 +42,21 @@ An AI-powered multilingual dictionary with translation, pronunciation, quizzes, 
 Prerequisites: Node.js >= 20, npm, and PostgreSQL (or Docker).
 
 1. Install dependencies: `npm install`
-2. Copy `.env.example` to `.env` and fill in your values:
-   - Windows PowerShell: `Copy-Item .env.example .env`
-   - macOS/Linux: `cp .env.example .env`
+2. Create a `.env` file in the repo root with these values:
+   ```bash
+   NODE_ENV=development
+   PORT=5000
+   API_URL=http://localhost:5000/api
+   DATABASE_URL=postgresql://dictionary:dictionary@localhost:5432/dictionary
+   JWT_SECRET=change-me-to-a-long-random-string
+   JWT_EXPIRES_IN=7d
+   DICTIONARY_API_URL=https://api.dictionaryapi.dev/api/v2/entries/en
+   DATAMUSE_API_URL=https://api.datamuse.com
+   LIBRETRANSLATE_API_URL=https://libretranslate.com/translate
+   LIBRETRANSLATE_API_KEY=
+   VITE_API_URL=http://localhost:5000/api
+   ```
+   (The server also loads `VITE_API_URL` from the same file for the Vite client.)
 3. Start PostgreSQL:
    - With Docker: `docker compose up -d postgres`
    - Or point `DATABASE_URL` at an existing Postgres instance
@@ -64,7 +76,7 @@ Then open http://localhost:5173 (client) — the API runs at http://localhost:50
 
 ## Environment Variables
 
-See `.env.example` for the required environment variables. Third-party keys
-(`DICTIONARY_API_URL`, `DATAMUSE_API_URL`, `LIBRETRANSLATE_API_URL`) are optional —
+The required environment variables are listed in the Getting Started section above. Third-party
+keys (`DICTIONARY_API_URL`, `DATAMUSE_API_URL`, `LIBRETRANSLATE_API_URL`) are optional —
 the server falls back to free public endpoints, and a small offline translation
 dictionary keeps single-word translations working without network access.
