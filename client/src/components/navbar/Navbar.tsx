@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Logo } from '@/components/common/Logo';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 interface MenuItem {
   label: string;
@@ -177,7 +178,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/75 backdrop-blur-xl border-b border-cream-400/60">
+    <nav className="sticky top-0 z-50 bg-navbar/75 backdrop-blur-xl border-b border-border">
       <div className="mx-auto flex h-[84px] max-w-[1400px] items-center justify-between px-6 lg:px-12 xl:px-16">
         {/* Logo */}
         <Logo onClick={handleLogoClick} className="mr-4" />
@@ -228,7 +229,7 @@ export function Navbar() {
                           transition={{ duration: 0.18, ease: 'easeOut' }}
                           className="absolute left-1/2 top-full pt-3 -translate-x-1/2"
                         >
-                          <div className="w-[300px] rounded-2xl border border-cream-400 bg-white p-2.5 shadow-elevated">
+                          <div className="w-[300px] rounded-2xl border border-border bg-card p-2.5 shadow-elevated">
                             {item.items?.map((sub) => {
                               const SubIcon = sub.icon ?? Home;
                               return (
@@ -283,30 +284,32 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Right: Get Started + Profile */}
-        <div className="flex items-center gap-6 ml-6 lg:ml-10">
+        {/* Right: Get Started + Theme + Profile */}
+        <div className="flex items-center gap-3 lg:gap-4 ml-6 lg:ml-10">
           <button
             onClick={() => scrollToSection('ai-dictionary')}
-            className="hidden md:inline-flex h-12 w-[150px] xl:w-[164px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:scale-[1.03] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40 cursor-pointer"
+            className="hidden md:inline-flex h-12 w-[150px] xl:w-[164px] items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:scale-[1.03] hover:from-orange-600 hover:to-orange-500 hover:shadow-xl hover:shadow-orange-500/40 cursor-pointer"
           >
             Get Started
           </button>
 
+          <ThemeToggle />
+
           <Link
             to="/profile"
             aria-label="Profile"
-            className="hidden sm:flex h-12 w-12 items-center justify-center rounded-full bg-white border border-cream-400 shadow-soft transition-all duration-200 hover:shadow-card hover:-translate-y-0.5"
+            className="hidden sm:flex h-12 w-12 items-center justify-center rounded-full bg-card border border-border shadow-soft transition-all duration-200 hover:shadow-card hover:-translate-y-0.5"
           >
-            <User className="h-[19px] w-[19px] text-navy/60" />
+            <User className="h-[19px] w-[19px] text-foreground/60" />
           </Link>
 
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-soft border border-cream-400"
+            className="lg:hidden flex h-11 w-11 items-center justify-center rounded-full bg-card shadow-soft border border-border"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-5 w-5 text-navy" /> : <Menu className="h-5 w-5 text-navy" />}
+            {mobileOpen ? <X className="h-5 w-5 text-foreground" /> : <Menu className="h-5 w-5 text-foreground" />}
           </button>
         </div>
       </div>
@@ -319,7 +322,7 @@ export function Navbar() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="lg:hidden overflow-hidden border-t border-cream-400/60 bg-white/95 backdrop-blur-xl"
+            className="lg:hidden overflow-hidden border-t border-border bg-card/95 backdrop-blur-xl"
           >
             <div className="flex flex-col gap-1 px-6 py-4 max-h-[70vh] overflow-y-auto">
               {navItems.map((item) => {
@@ -391,7 +394,7 @@ export function Navbar() {
                     setMobileOpen(false);
                     scrollToSection('ai-dictionary');
                   }}
-                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 cursor-pointer"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 cursor-pointer"
                 >
                   Get Started
                 </button>

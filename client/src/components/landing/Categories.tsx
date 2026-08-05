@@ -52,11 +52,11 @@ export function Categories() {
           <motion.div
             key={name}
             variants={item}
-            className="group relative overflow-hidden rounded-[24px] border border-cream-400 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+            className="group relative overflow-hidden rounded-[24px] border border-border bg-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
           >
             <div className={`h-20 w-full bg-gradient-to-br ${gradient} relative overflow-hidden`}>
               <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_20%_20%,white_2px,transparent_2px)] [background-size:16px_16px]" />
-              <div className="absolute -bottom-4 left-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-[28px] shadow-card transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+              <div className="absolute -bottom-4 left-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-card text-[28px] shadow-card transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                 {icon}
               </div>
             </div>

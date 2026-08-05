@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ThemeProvider } from '@/context/ThemeContext';
+import { ThemeProvider, useTheme } from '@/context/ThemeContext';
 import { Toaster } from 'sonner';
 
 const queryClient = new QueryClient({
@@ -11,25 +11,33 @@ const queryClient = new QueryClient({
   },
 });
 
+function ThemedToaster() {
+  const { resolvedTheme } = useTheme();
+  return (
+    <Toaster
+      position="top-right"
+      theme={resolvedTheme}
+      toastOptions={{
+        style: {
+          background: 'var(--card)',
+          border: '1px solid var(--border)',
+          borderRadius: '16px',
+          padding: '12px 16px',
+          fontSize: '14px',
+          color: 'var(--text-primary)',
+          boxShadow: '0 8px 40px var(--shadow-elevated)',
+        },
+      }}
+    />
+  );
+}
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         {children}
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: '#fff',
-              border: '1px solid #ECE7DF',
-              borderRadius: '16px',
-              padding: '12px 16px',
-              fontSize: '14px',
-              color: '#14213D',
-              boxShadow: '0 4px 24px rgba(20,33,61,0.08)',
-            },
-          }}
-        />
+        <ThemedToaster />
       </ThemeProvider>
     </QueryClientProvider>
   );

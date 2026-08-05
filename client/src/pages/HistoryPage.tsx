@@ -41,7 +41,7 @@ export default function HistoryPage() {
           </div>
         ) : history.length === 0 ? (
           <div className="card-premium p-12 text-center">
-            <Clock className="h-10 w-10 text-cream-400 mx-auto mb-4" />
+            <Clock className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
             <p className="text-navy/40 text-[15px]">No search history yet.</p>
           </div>
         ) : (

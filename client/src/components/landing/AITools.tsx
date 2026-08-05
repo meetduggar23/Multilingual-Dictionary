@@ -36,7 +36,7 @@ const item = {
 
 export function AITools() {
   return (
-    <section className="relative overflow-hidden bg-navy py-16">
+    <section className="relative overflow-hidden bg-band py-16">
       <div className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-orange-500/20 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-orange-500/10 blur-3xl" />
 

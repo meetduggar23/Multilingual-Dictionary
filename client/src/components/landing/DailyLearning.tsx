@@ -50,7 +50,7 @@ export function DailyLearning() {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="card-premium relative overflow-hidden p-8 sm:p-10"
       >
-        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-orange-50 blur-2xl" />
+        <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[var(--blob-mid)] blur-2xl" />
         <div className="relative grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-10 items-center">
           <div>
             <div className="flex flex-wrap items-center gap-3">
@@ -99,10 +99,10 @@ export function DailyLearning() {
             )}
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <button className="inline-flex h-11 items-center gap-2 rounded-2xl border border-cream-400 bg-white px-5 text-[14px] font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card">
+              <button className="inline-flex h-11 items-center gap-2 rounded-2xl border border-border bg-card px-5 text-[14px] font-semibold text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card">
                 <Heart className="h-4 w-4 text-orange-500" /> Save
               </button>
-              <button className="inline-flex h-11 items-center gap-2 rounded-2xl border border-cream-400 bg-white px-5 text-[14px] font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card">
+              <button className="inline-flex h-11 items-center gap-2 rounded-2xl border border-border bg-card px-5 text-[14px] font-semibold text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card">
                 <Share2 className="h-4 w-4 text-orange-500" /> Share
               </button>
               <Link
@@ -120,7 +120,7 @@ export function DailyLearning() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative flex h-56 w-56 items-center justify-center rounded-[32px] bg-gradient-to-br from-orange-100 via-orange-50 to-white shadow-card"
+              className="relative flex h-56 w-56 items-center justify-center rounded-[32px] bg-gradient-to-br from-[var(--blob-soft)] via-[var(--blob-mid)] to-card shadow-card"
             >
               <div className="absolute inset-4 rounded-[24px] border-2 border-dashed border-orange-200" />
               <div className="flex flex-col items-center gap-2">
@@ -131,7 +131,7 @@ export function DailyLearning() {
                   WORD OF THE DAY
                 </span>
               </div>
-              <div className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card">
+              <div className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-card shadow-card">
                 <Sparkles className="h-5 w-5 text-orange-500" />
               </div>
             </motion.div>

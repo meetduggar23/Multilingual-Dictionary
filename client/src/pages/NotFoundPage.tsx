@@ -10,7 +10,7 @@ export default function NotFoundPage() {
       <Navbar />
       <main className="flex-1 flex items-center justify-center px-4 pb-16">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-          <div className="text-[120px] font-extrabold text-cream-400 leading-none">404</div>
+          <div className="text-[120px] font-extrabold text-muted-foreground leading-none">404</div>
           <h1 className="font-display text-[28px] font-extrabold text-navy -mt-4 mb-3">Page Not Found</h1>
           <p className="text-navy/45 text-[15px] mb-8">The page you're looking for doesn't exist.</p>
           <Link to="/" className="btn-gradient h-11 px-7 inline-flex items-center gap-2">

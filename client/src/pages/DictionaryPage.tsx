@@ -68,7 +68,7 @@ export default function DictionaryPage() {
                 <button
                   key={w}
                   onClick={() => { setQuery(w); }}
-                  className="px-4 py-2 rounded-xl bg-white border border-cream-400 text-sm text-navy/70 hover:border-orange-300 hover:text-orange-500 transition-all shadow-soft"
+                  className="px-4 py-2 rounded-xl bg-card border border-border text-sm text-foreground/70 hover:border-orange-300 hover:text-orange-500 transition-all shadow-soft"
                 >
                   {w}
                 </button>

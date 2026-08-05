@@ -73,7 +73,7 @@ export default function ProfilePage() {
               animate={{ opacity: 1, y: 0 }}
               className="card-premium relative overflow-hidden p-8"
             >
-              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-orange-50 blur-2xl" />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[var(--blob-mid)] blur-2xl" />
               <div className="relative flex flex-col sm:flex-row items-center gap-6">
                 <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-amber-500 text-[24px] font-extrabold text-white shadow-glow-orange">
                   {initials}
@@ -173,7 +173,7 @@ export default function ProfilePage() {
                 <Link
                   key={label}
                   to={to}
-                  className="group flex items-center justify-center gap-2 rounded-2xl border border-cream-400 bg-white px-4 py-4 text-[13px] font-semibold text-navy transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card"
+                  className="group flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-4 py-4 text-[13px] font-semibold text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-card"
                 >
                   <Icon className="h-4 w-4 text-orange-500" />
                   {label}

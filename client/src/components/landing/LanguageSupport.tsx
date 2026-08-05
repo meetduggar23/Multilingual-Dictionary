@@ -16,7 +16,7 @@ export function LanguageSupport() {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="card-premium relative overflow-hidden p-8 sm:p-12"
       >
-        <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-orange-50 blur-3xl" />
+        <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-[var(--blob-mid)] blur-3xl" />
 
         <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -35,7 +35,7 @@ export function LanguageSupport() {
               {languages.map((lang) => (
                 <div
                   key={lang}
-                  className="flex items-center gap-2.5 rounded-2xl border border-cream-400 bg-white px-4 py-3 text-[14px] font-semibold text-navy transition-all duration-200 hover:border-orange-200 hover:bg-orange-50/50"
+                  className="flex items-center gap-2.5 rounded-2xl border border-border bg-card px-4 py-3 text-[14px] font-semibold text-foreground transition-all duration-200 hover:border-orange-200 hover:bg-orange-50/50"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100">
                     <Check className="h-3 w-3 text-emerald-600" />
@@ -61,7 +61,7 @@ export function LanguageSupport() {
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative mx-auto flex aspect-square w-full max-w-[380px] items-center justify-center rounded-[32px] bg-gradient-to-br from-cream-100 to-orange-50 shadow-card"
+              className="relative mx-auto flex aspect-square w-full max-w-[380px] items-center justify-center rounded-[32px] bg-gradient-to-br from-cream-100 to-[var(--blob-mid)] shadow-card"
             >
               <Globe2 className="h-40 w-40 text-orange-200" strokeWidth={1.2} />
               <div className="absolute inset-8 rounded-full border-2 border-dashed border-orange-200" />
@@ -80,7 +80,7 @@ export function LanguageSupport() {
                   style={{ top, left }}
                 />
               ))}
-              <span className="absolute bottom-6 rounded-full bg-white px-4 py-1.5 text-[12px] font-bold text-navy shadow-card">
+              <span className="absolute bottom-6 rounded-full bg-card px-4 py-1.5 text-[12px] font-bold text-foreground shadow-card">
                 100+ Languages
               </span>
             </motion.div>

@@ -3,6 +3,72 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 250 247 242;
+    --surface: 248 244 238;
+    --surface-2: 240 235 227;
+    --card: 255 255 255;
+    --card-hover: 255 255 255;
+    --border: rgba(236, 231, 223, 1);
+    --input: 255 255 255;
+    --navbar: 255 255 255;
+    --band: 20 33 61;
+
+    --text-primary: 20 33 61;
+    --text-secondary: 100 116 139;
+    --text-muted: 148 163 184;
+
+    --accent: 249 115 22;
+    --accent-hover: 234 104 12;
+    --ring: 249 115 22;
+
+    --success: 16 185 129;
+    --warning: 245 158 11;
+    --danger: 239 68 68;
+
+    --shadow-soft: rgba(20, 33, 61, 0.06);
+    --shadow-card: rgba(20, 33, 61, 0.08);
+    --shadow-elevated: rgba(20, 33, 61, 0.1);
+    --shadow-hover: rgba(20, 33, 61, 0.12);
+
+    --blob-soft: rgba(255, 237, 213, 0.6);
+    --blob-mid: rgba(255, 247, 237, 0.7);
+    --blob-amber: rgba(254, 243, 199, 0.5);
+  }
+
+  html[data-theme='dark'] {
+    --background: 11 15 25;
+    --surface: 17 24 39;
+    --surface-2: 28 35 54;
+    --card: 24 31 47;
+    --card-hover: 32 40 59;
+    --border: rgba(255, 255, 255, 0.08);
+    --input: 17 24 39;
+    --navbar: 11 15 25;
+    --band: 14 21 38;
+
+    --text-primary: 248 250 252;
+    --text-secondary: 203 213 225;
+    --text-muted: 148 163 184;
+
+    --accent: 249 115 22;
+    --accent-hover: 234 104 12;
+    --ring: 249 115 22;
+
+    --success: 16 185 129;
+    --warning: 245 158 11;
+    --danger: 239 68 68;
+
+    --shadow-soft: rgba(0, 0, 0, 0.5);
+    --shadow-card: rgba(0, 0, 0, 0.55);
+    --shadow-elevated: rgba(0, 0, 0, 0.6);
+    --shadow-hover: rgba(0, 0, 0, 0.65);
+
+    --blob-soft: rgba(249, 115, 22, 0.14);
+    --blob-mid: rgba(249, 115, 22, 0.09);
+    --blob-amber: rgba(251, 191, 36, 0.12);
+  }
+
   * {
     @apply border-border;
   }
@@ -13,13 +79,19 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-image: radial-gradient(ellipse at 50% 0%, #FAF7F2 0%, #F8F4EE 60%, #FAF7F2 100%);
+    background-image: radial-gradient(
+      ellipse at 50% 0%,
+      rgb(var(--background)) 0%,
+      rgb(var(--surface)) 60%,
+      rgb(var(--background)) 100%
+    );
     background-attachment: fixed;
     text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
-    @apply bg-orange-100 text-navy;
+    @apply bg-orange-500 text-white;
   }
 
   ::-webkit-scrollbar {
@@ -30,24 +102,38 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-cream-400;
+    @apply rounded-full;
+    background: rgb(var(--text-muted) / 0.35);
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-cream-500;
+    background: rgb(var(--text-muted) / 0.6);
   }
+}
+
+/* Smooth theme-switch transition (applied only while switching to avoid jank) */
+html[data-theming] *,
+html[data-theming] *::before,
+html[data-theming] *::after {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    fill 0.3s ease,
+    stroke 0.3s ease,
+    box-shadow 0.3s ease !important;
 }
 
 @layer components {
   .card-premium {
-    @apply bg-white rounded-[22px] border border-cream-400 shadow-soft;
+    @apply bg-card rounded-[22px] border border-border shadow-soft;
   }
 
   .card-elevated {
-    @apply bg-white rounded-[22px] border border-cream-400 shadow-card;
+    @apply bg-card rounded-[22px] border border-border shadow-card;
     transition: all 0.2s ease;
   }
   .card-elevated:hover {
-    @apply shadow-elevated;
+    @apply shadow-elevated hover:bg-card-hover;
     transform: translateY(-2px);
   }
 
@@ -64,16 +150,16 @@
   }
 
   .input-premium {
-    @apply h-12 w-full rounded-2xl border border-cream-400 bg-white px-4 text-sm text-navy
-           placeholder:text-cream-500 shadow-soft transition-all duration-200;
+    @apply h-12 w-full rounded-2xl border border-border bg-card px-4 text-sm text-foreground
+           placeholder:text-muted-foreground shadow-soft transition-all duration-200;
   }
   .input-premium:focus {
     @apply outline-none ring-2 ring-orange-200 border-orange-400;
   }
 
   .select-premium {
-    @apply h-12 w-full appearance-none rounded-2xl border border-cream-400 bg-white px-4 pr-10 text-sm text-navy
-           shadow-soft transition-all duration-200 cursor-pointer;
+    @apply h-12 w-full appearance-none rounded-2xl border border-border bg-card px-4 pr-10 text-sm text-foreground
+           placeholder:text-muted-foreground shadow-soft transition-all duration-200 cursor-pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%237E8FAD' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
@@ -84,24 +170,33 @@
   }
 
   .nav-link {
-    @apply flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-navy/70
-           transition-all duration-200 hover:text-navy hover:bg-cream-200;
+    @apply flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-foreground/70
+           transition-all duration-200 hover:text-foreground hover:bg-secondary;
   }
   .nav-link.active {
     @apply text-orange-500 bg-orange-50;
   }
 
   .glass-nav {
-    @apply bg-white/80 backdrop-blur-xl border-b border-cream-400/60;
+    @apply bg-navbar/75 backdrop-blur-xl border-b border-border;
+  }
+
+  .glass-strong {
+    @apply bg-card/90 backdrop-blur-2xl border border-border text-foreground;
+    box-shadow: 0 12px 48px var(--shadow-elevated);
+  }
+
+  .gradient-surface {
+    @apply bg-gradient-to-r from-orange-500 to-orange-600;
   }
 
   .label-premium {
-    @apply text-sm font-semibold text-navy tracking-tight;
+    @apply text-sm font-semibold text-foreground tracking-tight;
   }
 
   .toolbar-btn {
-    @apply w-9 h-9 flex items-center justify-center rounded-xl text-navy/50
-           transition-all duration-150 hover:bg-cream-200 hover:text-navy;
+    @apply w-9 h-9 flex items-center justify-center rounded-xl text-foreground/50
+           transition-all duration-150 hover:bg-secondary hover:text-foreground;
   }
   .toolbar-btn.active {
     @apply bg-orange-50 text-orange-500;
@@ -111,12 +206,13 @@
     animation: fade-in-up 0.6s ease-out forwards;
   }
 
+  .shimmer,
   .shimmer-loading {
     background: linear-gradient(
       90deg,
-      #F8F4EE 25%,
-      #FAF7F2 50%,
-      #F8F4EE 75%
+      rgb(var(--surface)) 25%,
+      rgb(var(--background)) 50%,
+      rgb(var(--surface)) 75%
     );
     background-size: 1000px 100%;
     animation: shimmer 2s linear infinite;

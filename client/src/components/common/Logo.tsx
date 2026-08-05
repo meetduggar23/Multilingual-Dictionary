@@ -26,7 +26,7 @@ export function Logo({ className, size = 'md', onClick }: LogoProps) {
       onClick={onClick}
       aria-label="D. Dictionary AI"
       className={cn(
-        'group flex shrink-0 items-center justify-center bg-navy transition-all duration-200 hover:scale-[1.03]',
+        'group flex shrink-0 items-center justify-center bg-band transition-all duration-200 hover:scale-[1.03]',
         badgeSizes[size],
         className,
       )}
@@ -38,7 +38,7 @@ export function Logo({ className, size = 'md', onClick }: LogoProps) {
         )}
       >
         D
-        <span className="text-[#F97316] transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.9)]">
+        <span className="text-orange-500 transition-all duration-200 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.9)]">
           .
         </span>
       </span>

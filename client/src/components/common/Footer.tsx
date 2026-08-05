@@ -41,7 +41,7 @@ function FooterLink({ label, to }: { label: string; to: string }) {
 
 export function Footer() {
   return (
-    <footer className="border-t border-cream-400/50 bg-white/70 backdrop-blur-xl">
+    <footer className="border-t border-border bg-card/70 backdrop-blur-xl">
       <div className="mx-auto max-w-[1400px] px-6 py-14 lg:px-12 xl:px-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -57,7 +57,7 @@ export function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-cream-400 bg-white text-navy/40 transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-500 hover:shadow-card"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground/40 transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-500 hover:shadow-card"
                 >
                   <Icon className="h-[18px] w-[18px]" />
                 </a>
@@ -109,7 +109,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-cream-400/50 pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
           <p className="text-xs text-navy/30">© 2022 D. Dictionary AI. All rights reserved.</p>
           <div className="flex items-center gap-5">
             <Link to="/privacy-policy" className="text-xs text-navy/40 transition-colors hover:text-orange-500">

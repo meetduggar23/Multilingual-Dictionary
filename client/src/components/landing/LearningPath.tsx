@@ -49,7 +49,7 @@ const item = {
 
 export function LearningPath() {
   return (
-    <section className="bg-white/60 py-16">
+    <section className="bg-card/60 py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -78,7 +78,7 @@ export function LearningPath() {
             <motion.div
               key={level}
               variants={item}
-              className="group relative overflow-hidden rounded-[24px] border border-cream-400 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+              className="group relative overflow-hidden rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
             >
               <div className="mb-5 flex items-center justify-between">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cream-100 text-[22px] transition-transform duration-300 group-hover:scale-110">

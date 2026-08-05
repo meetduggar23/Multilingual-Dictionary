@@ -36,13 +36,13 @@ export function LegalPage({ title, description, icon: Icon, updated, sections, c
     : { label: 'Privacy Policy', to: '/privacy-policy' };
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
+    <div className="min-h-screen bg-background">
       {/* Soft background accents */}
-      <div className="pointer-events-none fixed -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-orange-100/70 blur-3xl" />
-      <div className="pointer-events-none fixed -bottom-40 -left-32 h-[420px] w-[420px] rounded-full bg-amber-100/50 blur-3xl" />
+      <div className="pointer-events-none fixed -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-[var(--blob-soft)] blur-3xl" />
+      <div className="pointer-events-none fixed -bottom-40 -left-32 h-[420px] w-[420px] rounded-full bg-[var(--blob-amber)] blur-3xl" />
 
       {/* Sticky legal navbar */}
-      <header className="sticky top-0 z-50 border-b border-cream-400/60 bg-white/85 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-border bg-card/85 backdrop-blur-xl">
         {/* Reading progress indicator */}
         <div className="h-1 w-full bg-cream-200">
           <div
@@ -102,7 +102,7 @@ export function LegalPage({ title, description, icon: Icon, updated, sections, c
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="rounded-[32px] border border-cream-400 bg-white p-8 shadow-elevated sm:p-12"
+          className="rounded-[32px] border border-border bg-card p-8 shadow-elevated sm:p-12"
         >
           <div className="space-y-12">
             {sections.map((section, i) => (
@@ -126,14 +126,14 @@ export function LegalPage({ title, description, icon: Icon, updated, sections, c
         </motion.div>
 
         {/* Legal footer */}
-        <footer className="mt-12 flex flex-col items-center gap-4 border-t border-cream-400/50 pt-8 text-center">
-          <p className="text-[14px] font-medium text-navy/40">Last Updated: {updated}</p>
+        <footer className="mt-12 flex flex-col items-center gap-4 border-t border-border pt-8 text-center">
+          <p className="text-[14px] font-medium text-foreground/40">Last Updated: {updated}</p>
           <a
             href="mailto:support@dictionary.ai"
             className={cn(
-              'group flex items-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] px-6 py-3',
+              'group flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3',
               'text-[14px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200',
-              'hover:scale-[1.03] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40',
+              'hover:scale-[1.03] hover:from-orange-600 hover:to-orange-500 hover:shadow-xl hover:shadow-orange-500/40',
             )}
           >
             <LifeBuoy className="h-4 w-4" />

@@ -45,7 +45,7 @@ export function Community() {
           <motion.div
             key={label}
             variants={item}
-            className="group rounded-[24px] border border-cream-400 bg-white p-8 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+            className="group rounded-[24px] border border-border bg-card p-8 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
           >
             <div className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110 ${color}`}>
               <Icon className="h-5 w-5" />

@@ -22,11 +22,11 @@ function CircularStat({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="group flex flex-col items-center rounded-[24px] border border-cream-400 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+      className="group flex flex-col items-center rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
     >
       <div className="relative mb-4 h-[104px] w-[104px]">
         <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
-          <circle cx="50" cy="50" r={radius} fill="none" stroke="#F8F4EE" strokeWidth="9" />
+          <circle cx="50" cy="50" r={radius} fill="none" stroke="var(--surface)" strokeWidth="9" />
           <motion.circle
             cx="50"
             cy="50"

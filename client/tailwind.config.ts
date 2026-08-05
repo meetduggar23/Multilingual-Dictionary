@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: false,
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     container: {
@@ -17,15 +16,15 @@ export default {
       },
       colors: {
         cream: {
-          50: '#FFFDF9',
-          100: '#FAF7F2',
-          200: '#F8F4EE',
-          300: '#F0EBE3',
-          400: '#ECE7DF',
-          500: '#E0D9CF',
+          50: 'rgb(var(--background) / <alpha-value>)',
+          100: 'rgb(var(--surface) / <alpha-value>)',
+          200: 'rgb(var(--surface) / <alpha-value>)',
+          300: 'rgb(var(--surface-2) / <alpha-value>)',
+          400: 'var(--border)',
+          500: 'rgb(var(--text-muted) / <alpha-value>)',
         },
         navy: {
-          DEFAULT: '#14213D',
+          DEFAULT: 'rgb(var(--text-primary) / <alpha-value>)',
           50: '#F0F2F7',
           100: '#D6DBE5',
           200: '#AAB5C9',
@@ -37,6 +36,11 @@ export default {
           800: '#09101A',
           900: '#05080D',
         },
+        band: 'rgb(var(--band) / <alpha-value>)',
+        navbar: 'rgb(var(--navbar) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        surface2: 'rgb(var(--surface-2) / <alpha-value>)',
+        'card-hover': 'rgb(var(--card-hover) / <alpha-value>)',
         orange: {
           DEFAULT: '#F97316',
           50: '#FFF5EB',
@@ -50,38 +54,42 @@ export default {
           800: '#A0460A',
           900: '#7A3608',
         },
-        border: '#ECE7DF',
-        input: '#ECE7DF',
-        ring: '#F97316',
-        background: '#FAF7F2',
-        foreground: '#14213D',
+        border: 'var(--border)',
+        input: 'rgb(var(--input) / <alpha-value>)',
+        ring: 'rgb(var(--ring) / <alpha-value>)',
+        background: 'rgb(var(--background) / <alpha-value>)',
+        foreground: 'rgb(var(--text-primary) / <alpha-value>)',
         primary: {
           DEFAULT: '#F97316',
           foreground: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: '#F8F4EE',
-          foreground: '#14213D',
+          DEFAULT: 'rgb(var(--surface) / <alpha-value>)',
+          foreground: 'rgb(var(--text-primary) / <alpha-value>)',
         },
         destructive: {
           DEFAULT: '#EF4444',
           foreground: '#FFFFFF',
         },
         muted: {
-          DEFAULT: '#F0EBE3',
-          foreground: '#7E8FAD',
+          DEFAULT: 'rgb(var(--surface-2) / <alpha-value>)',
+          foreground: 'rgb(var(--text-muted) / <alpha-value>)',
         },
         accent: {
           DEFAULT: '#F97316',
           foreground: '#FFFFFF',
         },
         popover: {
-          DEFAULT: '#FFFFFF',
-          foreground: '#14213D',
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--text-primary) / <alpha-value>)',
         },
         card: {
-          DEFAULT: '#FFFFFF',
-          foreground: '#14213D',
+          DEFAULT: 'rgb(var(--card) / <alpha-value>)',
+          foreground: 'rgb(var(--text-primary) / <alpha-value>)',
+        },
+        success: {
+          DEFAULT: 'rgb(var(--success) / <alpha-value>)',
+          foreground: '#FFFFFF',
         },
       },
       borderRadius: {
@@ -125,11 +133,11 @@ export default {
         'slide-in': 'slide-in 0.3s ease-out forwards',
       },
       boxShadow: {
-        soft: '0 2px 20px rgba(20, 33, 61, 0.06)',
-        card: '0 4px 24px rgba(20, 33, 61, 0.08)',
-        elevated: '0 8px 40px rgba(20, 33, 61, 0.10)',
+        soft: '0 2px 20px var(--shadow-soft)',
+        card: '0 4px 24px var(--shadow-card)',
+        elevated: '0 8px 40px var(--shadow-elevated)',
         'glow-orange': '0 0 40px rgba(249, 115, 22, 0.2)',
-        hover: '0 12px 48px rgba(20, 33, 61, 0.12)',
+        hover: '0 12px 48px var(--shadow-hover)',
       },
     },
   },

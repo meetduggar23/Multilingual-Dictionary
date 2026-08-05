@@ -48,7 +48,7 @@ export function WhyChoose() {
           <motion.div
             key={title}
             variants={item}
-            className="group rounded-[24px] border border-cream-400 bg-white p-7 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+            className="group rounded-[24px] border border-border bg-card p-7 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
           >
             <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-orange-50 to-amber-100 text-orange-500 transition-all duration-300 group-hover:scale-110 group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white group-hover:shadow-glow-orange">
               <Icon className="h-6 w-6" />

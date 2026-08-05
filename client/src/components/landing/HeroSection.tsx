@@ -19,9 +19,9 @@ export function HeroSection() {
 
   return (
     <section id="home" className="relative overflow-hidden pt-14 pb-4 scroll-mt-20">
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-orange-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute top-40 -left-32 h-72 w-72 rounded-full bg-orange-50 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-20 -right-32 h-80 w-80 rounded-full bg-amber-100/50 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[var(--blob-soft)] blur-3xl" />
+      <div className="pointer-events-none absolute top-40 -left-32 h-72 w-72 rounded-full bg-[var(--blob-mid)] blur-3xl" />
+      <div className="pointer-events-none absolute bottom-20 -right-32 h-80 w-80 rounded-full bg-[var(--blob-amber)] blur-3xl" />
 
       <motion.div
         variants={container}
@@ -59,7 +59,7 @@ export function HeroSection() {
           </button>
           <Link
             to="/ai-assistant"
-            className="inline-flex h-[54px] items-center gap-2.5 rounded-2xl border border-cream-400 bg-white px-8 text-[16px] font-semibold text-navy shadow-soft transition-all duration-200 hover:shadow-card hover:-translate-y-0.5"
+            className="inline-flex h-[54px] items-center gap-2.5 rounded-2xl border border-border bg-card px-8 text-[16px] font-semibold text-foreground shadow-soft transition-all duration-200 hover:shadow-card hover:-translate-y-0.5"
           >
             <Sparkles className="h-5 w-5 text-orange-500" />
             Ask AI Assistant

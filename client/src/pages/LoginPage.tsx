@@ -116,11 +116,11 @@ export default function LoginPage() {
   }, [email, password, navigate]);
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#FAF7F2] lg:h-screen lg:overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-background lg:h-screen lg:overflow-hidden">
       {/* Background */}
-      <div className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-100/70 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-32 h-[480px] w-[480px] rounded-full bg-amber-100/60 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/3 right-1/4 h-64 w-64 rounded-full bg-orange-50 blur-3xl" />
+      <div className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-[var(--blob-soft)] blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-32 h-[480px] w-[480px] rounded-full bg-[var(--blob-amber)] blur-3xl" />
+      <div className="pointer-events-none absolute top-1/3 right-1/4 h-64 w-64 rounded-full bg-[var(--blob-mid)] blur-3xl" />
       {particles.map((p, i) => (
         <motion.span
           key={i}
@@ -144,7 +144,7 @@ export default function LoginPage() {
               className="relative h-[520px] w-full max-w-[560px]"
             >
               {/* Backdrop */}
-              <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-orange-100 via-cream-100 to-white shadow-elevated" />
+              <div className="absolute inset-0 rounded-[48px] bg-gradient-to-br from-[var(--blob-soft)] via-cream-100 to-card shadow-elevated" />
               <div className="absolute inset-5 rounded-[40px] border-2 border-dashed border-orange-200/80" />
 
               {/* Glow blobs */}
@@ -158,10 +158,10 @@ export default function LoginPage() {
                 className="absolute left-1/2 top-1/2 flex h-44 w-44 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[36px] bg-gradient-to-br from-orange-500 to-amber-500 shadow-glow-orange"
               >
                 <BookMarked className="h-20 w-20 text-white" strokeWidth={1.5} />
-                <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-card">
+                <span className="absolute -right-3 -top-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-card shadow-card">
                   <Sparkles className="h-6 w-6 text-orange-500" />
                 </span>
-                <span className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-2xl bg-white px-3.5 py-2 shadow-card">
+                <span className="absolute -bottom-3 -left-3 flex items-center gap-1.5 rounded-2xl bg-card px-3.5 py-2 shadow-card">
                   <Zap className="h-4 w-4 text-amber-500" />
                   <span className="text-[12px] font-bold text-navy">AI Powered</span>
                 </span>
@@ -174,7 +174,7 @@ export default function LoginPage() {
                   animate={{ y: [0, -10, 0], opacity: [0.45, 1, 0.45] }}
                   transition={{ duration: 4 + i, repeat: Infinity, delay, ease: 'easeInOut' }}
                   className={cn(
-                    'absolute rounded-2xl bg-white/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur',
+                    'absolute rounded-2xl bg-card/95 px-4 py-2.5 text-[15px] font-bold text-navy shadow-card backdrop-blur',
                     pos,
                   )}
                 >
@@ -186,7 +186,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-                className="absolute left-[6%] top-[40%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+                className="absolute left-[6%] top-[40%] flex items-center gap-2.5 rounded-2xl bg-card px-4 py-3 shadow-card"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50">
                   <Heart className="h-4 w-4 text-rose-500" />
@@ -200,7 +200,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.9 }}
-                className="absolute right-[6%] top-[26%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+                className="absolute right-[6%] top-[26%] flex items-center gap-2.5 rounded-2xl bg-card px-4 py-3 shadow-card"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-50">
                   <Flame className="h-4 w-4 text-orange-500" />
@@ -214,7 +214,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
-                className="absolute bottom-[14%] right-[10%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+                className="absolute bottom-[14%] right-[10%] flex items-center gap-2.5 rounded-2xl bg-card px-4 py-3 shadow-card"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50">
                   <ShieldCheck className="h-4 w-4 text-emerald-500" />
@@ -228,7 +228,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
-                className="absolute bottom-[20%] left-[8%] flex items-center gap-2.5 rounded-2xl bg-white px-4 py-3 shadow-card"
+                className="absolute bottom-[20%] left-[8%] flex items-center gap-2.5 rounded-2xl bg-card px-4 py-3 shadow-card"
               >
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50">
                   <Globe className="h-4 w-4 text-sky-500" />
@@ -243,7 +243,7 @@ export default function LoginPage() {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }}
-                className="absolute right-[24%] bottom-[38%] flex items-center gap-1 rounded-full bg-white px-3 py-1.5 shadow-card"
+                className="absolute right-[24%] bottom-[38%] flex items-center gap-1 rounded-full bg-card px-3 py-1.5 shadow-card"
               >
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
@@ -266,7 +266,7 @@ export default function LoginPage() {
               initial={{ opacity: 0, x: 24 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
-              className="w-full max-w-[460px] max-h-[760px] rounded-[28px] border border-cream-400 bg-white p-8 shadow-elevated"
+              className="w-full max-w-[460px] max-h-[760px] rounded-[28px] border border-cream-400 bg-card p-8 shadow-elevated"
             >
               <div className="text-center">
                 <h1 className="font-display text-[48px] font-extrabold tracking-tight text-navy leading-[1.05]">
@@ -285,7 +285,7 @@ export default function LoginPage() {
                     type="button"
                     aria-label={`Continue with ${label}`}
                     title={`Continue with ${label}`}
-                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-white transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card"
+                    className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card"
                   >
                     <Icon className="h-[22px] w-[22px]" />
                   </button>
@@ -312,7 +312,7 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@email.com"
-                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-4 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-card pl-11 pr-4 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
                     />
                   </div>
                 </div>
@@ -327,7 +327,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
-                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-white pl-11 pr-12 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
+                      className="h-[52px] w-full rounded-2xl border border-cream-400 bg-card pl-11 pr-12 text-sm text-navy placeholder:text-cream-500 shadow-soft transition-all duration-200 focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-200"
                     />
                     <button
                       type="button"
@@ -361,8 +361,8 @@ export default function LoginPage() {
                   type="submit"
                   disabled={loading}
                   className={cn(
-                    'group mt-5 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#F97316] to-[#FB8C00] text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200',
-                    'hover:scale-[1.02] hover:from-[#EA670C] hover:to-[#F97316] hover:shadow-xl hover:shadow-orange-500/40',
+                    'group mt-5 flex h-[54px] w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-[15px] font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200',
+                    'hover:scale-[1.02] hover:from-orange-600 hover:to-orange-500 hover:shadow-xl hover:shadow-orange-500/40',
                     'disabled:opacity-50 disabled:hover:scale-100',
                   )}
                 >

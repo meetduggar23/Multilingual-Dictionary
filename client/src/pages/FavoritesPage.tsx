@@ -30,7 +30,7 @@ export default function FavoritesPage() {
           </div>
         ) : favorites.length === 0 ? (
           <div className="card-premium p-12 text-center">
-            <Heart className="h-10 w-10 text-cream-400 mx-auto mb-4" />
+            <Heart className="h-10 w-10 text-muted-foreground mx-auto mb-4" />
             <p className="text-navy/40 text-[15px]">No favorites yet. Search for a word and tap the heart icon to save it.</p>
           </div>
         ) : (

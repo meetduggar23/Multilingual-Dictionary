@@ -106,7 +106,7 @@ export default function QuizPage() {
               {q.options.map((opt) => {
                 const isCorrect = opt === q.answer;
                 const isSelected = opt === selected;
-                let cls = 'border-cream-400 bg-white hover:border-orange-300 hover:bg-orange-50/50';
+                let cls = 'border-border bg-card hover:border-orange-300 hover:bg-orange-50/50';
                 if (showResult && isCorrect) cls = 'border-green-300 bg-green-50 text-green-700';
                 else if (showResult && isSelected && !isCorrect) cls = 'border-red-300 bg-red-50 text-red-600';
 

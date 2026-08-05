@@ -10,7 +10,7 @@ export function FinalCTA() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.7, ease: 'easeOut' }}
-        className="relative overflow-hidden rounded-[36px] bg-navy p-10 sm:p-16 text-center"
+        className="relative overflow-hidden rounded-[36px] bg-band p-10 sm:p-16 text-center"
       >
         <div className="pointer-events-none absolute -top-24 left-1/2 h-80 w-[560px] -translate-x-1/2 rounded-full bg-orange-500/25 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 -right-10 h-64 w-64 rounded-full bg-orange-500/15 blur-3xl" />

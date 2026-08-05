@@ -63,7 +63,7 @@ export function QuickActions() {
           <motion.div key={label} variants={item}>
             <Link
               to={to}
-              className="group relative block overflow-hidden rounded-[24px] border border-cream-400 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
+              className="group relative block overflow-hidden rounded-[24px] border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-hover"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 to-amber-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-50 text-orange-500 transition-all duration-300 group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-glow-orange">
