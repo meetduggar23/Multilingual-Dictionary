@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Bold,
   Italic,
@@ -11,8 +11,10 @@ import {
   Heading3,
   Copy,
   Printer,
+  Eye,
+  Eraser,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn, escapeHtml } from '@/lib/utils';
 import { toast } from 'sonner';
 
 interface EditorCardProps {
@@ -21,7 +23,8 @@ interface EditorCardProps {
 }
 
 function renderMarkdown(text: string): string {
-  return text
+  const safe = escapeHtml(text);
+  return safe
     .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-navy mt-3 mb-1">$1</h3>')
     .replace(/^## (.+)$/gm, '<h2 class="text-lg font-bold text-navy mt-4 mb-2">$1</h2>')
     .replace(/^# (.+)$/gm, '<h1 class="text-xl font-extrabold text-navy mt-5 mb-3">$1</h1>')
@@ -48,19 +51,45 @@ const toolbarButtons = [
   { icon: Heading3, action: 'h3', label: 'H3' },
   { icon: Copy, action: 'copy', label: 'Copy' },
   { icon: Printer, action: 'print', label: 'Print' },
+  { icon: Eye, action: 'toggle', label: 'Preview / Edit' },
+  { icon: Eraser, action: 'clear', label: 'Clear' },
 ];
+
+type Mode = 'edit' | 'preview';
 
 export function EditorCard({ content, onChange }: EditorCardProps) {
   const [activeToolbar, setActiveToolbar] = useState<string | null>(null);
+  const [mode, setMode] = useState<Mode>(content ? 'preview' : 'edit');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const prevContentRef = useRef(content);
+
+  useEffect(() => {
+    const prev = prevContentRef.current;
+    prevContentRef.current = content;
+    if (!prev && content) setMode('preview');
+  }, [content]);
+
+  const switchToEdit = useCallback(() => {
+    setMode('edit');
+    requestAnimationFrame(() => textareaRef.current?.focus());
+  }, []);
 
   const handleToolbar = useCallback(
     (action: string) => {
       setActiveToolbar(action);
       setTimeout(() => setActiveToolbar(null), 300);
 
-      const ta = textareaRef.current;
-      if (!ta && action !== 'copy' && action !== 'print') return;
+      if (action === 'toggle') {
+        setMode((m) => (m === 'edit' ? 'preview' : 'edit'));
+        return;
+      }
+
+      if (action === 'clear') {
+        onChange('');
+        setMode('edit');
+        requestAnimationFrame(() => textareaRef.current?.focus());
+        return;
+      }
 
       if (action === 'copy') {
         navigator.clipboard.writeText(content).then(() => toast.success('Copied to clipboard'));
@@ -77,7 +106,12 @@ export function EditorCard({ content, onChange }: EditorCardProps) {
         return;
       }
 
-      if (!ta) return;
+      const ta = textareaRef.current;
+      if (!ta) {
+        switchToEdit();
+        return;
+      }
+
       const start = ta.selectionStart;
       const end = ta.selectionEnd;
       const selected = content.substring(start, end);
@@ -101,7 +135,7 @@ export function EditorCard({ content, onChange }: EditorCardProps) {
       onChange(newText);
       ta.focus();
     },
-    [content, onChange],
+    [content, onChange, switchToEdit],
   );
 
   return (
@@ -125,7 +159,7 @@ export function EditorCard({ content, onChange }: EditorCardProps) {
 
       {/* Editor Area */}
       <div className="flex-1 min-h-[340px] relative">
-        {content ? (
+        {mode === 'preview' && content ? (
           <div className="p-6 overflow-auto h-full max-h-[500px]">
             <div
               className="prose prose-navy max-w-none text-[15px] leading-relaxed text-navy"

@@ -4,10 +4,17 @@ import { Sparkles, Send, Bot, User } from 'lucide-react';
 import { Navbar } from '@/components/navbar/Navbar';
 import { Footer } from '@/components/common/Footer';
 import { useDictionary } from '@/hooks/useDictionary';
+import { escapeHtml } from '@/lib/utils';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
+}
+
+function renderLine(line: string): string {
+  return escapeHtml(line)
+    .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold">$1</strong>')
+    .replace(/_(.+?)_/g, '<em>$1</em>');
 }
 
 export default function AIAssistantPage() {
@@ -15,7 +22,7 @@ export default function AIAssistantPage() {
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: 'Hello! I\'m your AI dictionary assistant. Ask me about any word — I can explain meanings, give examples, suggest synonyms, and more.' },
   ]);
-  const { search, entries } = useDictionary();
+  const { search } = useDictionary();
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -80,9 +87,7 @@ export default function AIAssistantPage() {
                 }`}>
                   {msg.content.split('\n').map((line, j) => (
                     <p key={j} className={j > 0 ? 'mt-2' : ''} dangerouslySetInnerHTML={{
-                      __html: line
-                        .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold">$1</strong>')
-                        .replace(/_(.+?)_/g, '<em>$1</em>')
+                      __html: renderLine(line)
                     }} />
                   ))}
                 </div>

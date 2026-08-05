@@ -1,10 +1,9 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, ArrowRight, Loader2, Volume2 } from 'lucide-react';
+import { Globe, ArrowRight, Loader2 } from 'lucide-react';
 import { Navbar } from '@/components/navbar/Navbar';
 import { Footer } from '@/components/common/Footer';
 import { useDictionary } from '@/hooks/useDictionary';
-import { useSpeech } from '@/hooks/useVoice';
 import { LANGUAGES } from '@dictionary/shared';
 
 export default function TranslatorPage() {
@@ -13,7 +12,6 @@ export default function TranslatorPage() {
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { translateText } = useDictionary();
-  const { speak } = useSpeech();
 
   const handleTranslate = useCallback(async () => {
     if (!text.trim()) return;

@@ -14,7 +14,6 @@ import {
   LayoutDashboard,
   ListChecks,
   Menu,
-  Mic,
   Search,
   Sparkles,
   SpellCheck,

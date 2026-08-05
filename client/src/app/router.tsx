@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { RequireAuth } from '@/app/RequireAuth';
 import Home from '@/pages/Home';
 import DictionaryPage from '@/pages/DictionaryPage';
 import DailyWordPage from '@/pages/DailyWordPage';
@@ -18,12 +19,40 @@ export const router = createBrowserRouter([
   { path: '/', element: <Home /> },
   { path: '/dictionary', element: <DictionaryPage /> },
   { path: '/daily-word', element: <DailyWordPage /> },
-  { path: '/favorites', element: <FavoritesPage /> },
-  { path: '/history', element: <HistoryPage /> },
-  { path: '/quiz', element: <QuizPage /> },
+  {
+    path: '/favorites',
+    element: (
+      <RequireAuth>
+        <FavoritesPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: '/history',
+    element: (
+      <RequireAuth>
+        <HistoryPage />
+      </RequireAuth>
+    ),
+  },
+  {
+    path: '/quiz',
+    element: (
+      <RequireAuth>
+        <QuizPage />
+      </RequireAuth>
+    ),
+  },
   { path: '/translator', element: <TranslatorPage /> },
   { path: '/ai-assistant', element: <AIAssistantPage /> },
-  { path: '/profile', element: <ProfilePage /> },
+  {
+    path: '/profile',
+    element: (
+      <RequireAuth>
+        <ProfilePage />
+      </RequireAuth>
+    ),
+  },
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
   { path: '/privacy-policy', element: <PrivacyPage /> },

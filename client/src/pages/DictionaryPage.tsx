@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Search, Languages, Heart, Share2, ArrowRight } from 'lucide-react';
 import { Navbar } from '@/components/navbar/Navbar';
@@ -8,26 +9,61 @@ import { useSpeech } from '@/hooks/useVoice';
 import { toast } from 'sonner';
 
 export default function DictionaryPage() {
+  const [searchParams] = useSearchParams();
   const [query, setQuery] = useState('');
   const [recentWords, setRecentWords] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem('dict:recent') ?? '[]'); } catch { return []; }
   });
   const { entries, relatedWords, loading, error, search } = useDictionary();
   const { speak, speaking, stop } = useSpeech();
-  const { add: addFav, remove: removeFav, isFavorited } = useFavorites();
+  const { favorites, fetchAll: fetchFavorites, add: addFav, remove: removeFav } = useFavorites();
 
-  const handleSearch = useCallback(async () => {
-    if (!query.trim()) return;
-    const result = await search(query);
+  useEffect(() => {
+    fetchFavorites();
+  }, [fetchFavorites]);
+
+  const handleSearch = useCallback(async (wordOverride?: string) => {
+    const word = (wordOverride ?? query).trim();
+    if (!word) return;
+    const result = await search(word);
     if (result?.length) {
-      const updated = [query, ...recentWords.filter((w) => w !== query)].slice(0, 10);
-      setRecentWords(updated);
-      localStorage.setItem('dict:recent', JSON.stringify(updated));
+      setRecentWords((prev) => {
+        const updated = [word, ...prev.filter((w) => w !== word)].slice(0, 10);
+        localStorage.setItem('dict:recent', JSON.stringify(updated));
+        return updated;
+      });
     }
-  }, [query, search, recentWords]);
+  }, [query, search]);
+
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) {
+      setQuery(q);
+      handleSearch(q);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   const entry = entries[0];
-  const favorited = entry ? isFavorited(entry.word) : false;
+  const favorite = entry ? favorites.find((f) => f.word.toLowerCase() === entry.word.toLowerCase()) : undefined;
+  const favorited = !!favorite;
+
+  const handleToggleFavorite = useCallback(async () => {
+    if (!entry) return;
+    try {
+      if (favorited && favorite) {
+        await removeFav(favorite.id);
+      } else {
+        await addFav(entry.word);
+      }
+    } catch (err: any) {
+      if (err?.status === 401) {
+        toast.error('Please sign in to save favorites');
+      } else {
+        toast.error(err?.message ?? 'Could not update favorite');
+      }
+    }
+  }, [entry, favorite, favorited, addFav, removeFav]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -51,7 +87,7 @@ export default function DictionaryPage() {
             className="flex-1 h-11 bg-transparent text-navy placeholder:text-cream-500 focus:outline-none text-[15px]"
           />
           <button
-            onClick={handleSearch}
+            onClick={() => handleSearch()}
             disabled={loading}
             className="h-10 px-5 rounded-xl bg-orange-500 text-white font-semibold text-sm hover:bg-orange-600 transition-all flex items-center gap-2 disabled:opacity-50"
           >
@@ -67,7 +103,7 @@ export default function DictionaryPage() {
               {recentWords.map((w) => (
                 <button
                   key={w}
-                  onClick={() => { setQuery(w); }}
+                  onClick={() => { setQuery(w); handleSearch(w); }}
                   className="px-4 py-2 rounded-xl bg-card border border-border text-sm text-foreground/70 hover:border-orange-300 hover:text-orange-500 transition-all shadow-soft"
                 >
                   {w}
@@ -108,7 +144,7 @@ export default function DictionaryPage() {
                     <Languages className="h-5 w-5" />
                   </button>
                   <button
-                    onClick={() => favorited ? removeFav(entry.word) : addFav(entry.word)}
+                    onClick={handleToggleFavorite}
                     className={`h-10 w-10 flex items-center justify-center rounded-xl transition-all ${favorited ? 'bg-orange-50 text-orange-500' : 'bg-cream-200 text-navy/50 hover:bg-orange-50 hover:text-orange-500'}`}
                     title="Favorite"
                   >

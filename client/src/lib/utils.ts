@@ -5,6 +5,15 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
+export function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export function formatDate(date: string | Date): string {
   const d = typeof date === 'string' ? new Date(date) : date;
   return d.toLocaleDateString(undefined, {

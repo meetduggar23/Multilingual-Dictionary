@@ -22,10 +22,10 @@ const legalLinks = [
 ];
 
 const socials = [
-  { label: 'GitHub', Icon: Github },
-  { label: 'Twitter', Icon: Twitter },
-  { label: 'Instagram', Icon: Instagram },
-  { label: 'LinkedIn', Icon: Linkedin },
+  { label: 'GitHub', Icon: Github, href: 'https://github.com' },
+  { label: 'Twitter', Icon: Twitter, href: 'https://x.com' },
+  { label: 'Instagram', Icon: Instagram, href: 'https://instagram.com' },
+  { label: 'LinkedIn', Icon: Linkedin, href: 'https://linkedin.com' },
 ];
 
 function FooterLink({ label, to }: { label: string; to: string }) {
@@ -52,10 +52,12 @@ export function Footer() {
               at a time.
             </p>
             <div className="mt-6 flex items-center gap-2.5">
-              {socials.map(({ label, Icon }) => (
+              {socials.map(({ label, Icon, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground/40 transition-all duration-200 hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-500 hover:shadow-card"
                 >
@@ -110,7 +112,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 sm:flex-row">
-          <p className="text-xs text-navy/30">© 2022 D. Dictionary AI. All rights reserved.</p>
+          <p className="text-xs text-navy/30">© {new Date().getFullYear()} D. Dictionary AI. All rights reserved.</p>
           <div className="flex items-center gap-5">
             <Link to="/privacy-policy" className="text-xs text-navy/40 transition-colors hover:text-orange-500">
               Privacy Policy

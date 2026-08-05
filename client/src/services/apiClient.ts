@@ -11,7 +11,7 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const token = localStorage.getItem('dict:token');
+  const token = localStorage.getItem('dict:token') ?? sessionStorage.getItem('dict:token');
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -26,14 +26,18 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     const body = await res.json().catch(() => ({ message: res.statusText }));
     throw new ApiError(res.status, body.message ?? res.statusText, body);
   }
+  if (res.status === 204) {
+    return undefined as T;
+  }
   return res.json();
 }
 
 export const api = {
-  get: <T>(path: string) => request<T>(path),
-  post: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: 'POST', body: body ? JSON.stringify(body) : undefined }),
-  patch: <T>(path: string, body?: unknown) =>
-    request<T>(path, { method: 'PATCH', body: body ? JSON.stringify(body) : undefined }),
-  delete: <T>(path: string) => request<T>(path, { method: 'DELETE' }),
+  get: <T>(path: string, options?: RequestInit) => request<T>(path, options),
+  post: <T>(path: string, body?: unknown, options?: RequestInit) =>
+    request<T>(path, { ...options, method: 'POST', body: body ? JSON.stringify(body) : undefined }),
+  patch: <T>(path: string, body?: unknown, options?: RequestInit) =>
+    request<T>(path, { ...options, method: 'PATCH', body: body ? JSON.stringify(body) : undefined }),
+  delete: <T>(path: string, options?: RequestInit) =>
+    request<T>(path, { ...options, method: 'DELETE' }),
 };

@@ -45,15 +45,20 @@ export interface Quiz {
   questions: QuizQuestion[];
 }
 
-export async function searchWord(word: string, language = 'en'): Promise<DictionaryEntry[]> {
+export async function searchWord(
+  word: string,
+  language = 'en',
+  signal?: AbortSignal,
+): Promise<DictionaryEntry[]> {
   const data = await api.get<{ word: string; language: string; entries: DictionaryEntry[] }>(
     `/dictionary/search?word=${encodeURIComponent(word)}&language=${language}`,
+    { signal },
   );
   return data.entries;
 }
 
-export async function getRelatedWords(word: string): Promise<RelatedWords> {
-  return api.get<RelatedWords>(`/dictionary/related?word=${encodeURIComponent(word)}`);
+export async function getRelatedWords(word: string, signal?: AbortSignal): Promise<RelatedWords> {
+  return api.get<RelatedWords>(`/dictionary/related?word=${encodeURIComponent(word)}`, { signal });
 }
 
 export async function getRhymes(word: string): Promise<string[]> {
@@ -63,8 +68,8 @@ export async function getRhymes(word: string): Promise<string[]> {
   return data.rhymes;
 }
 
-export async function getSuggestions(q: string): Promise<Suggestion[]> {
-  return api.get<Suggestion[]>(`/dictionary/suggest?q=${encodeURIComponent(q)}&max=8`);
+export async function getSuggestions(q: string, max = 8): Promise<Suggestion[]> {
+  return api.get<Suggestion[]>(`/dictionary/suggest?q=${encodeURIComponent(q)}&max=${max}`);
 }
 
 export async function translate(text: string, targetLang: string, sourceLang?: string): Promise<TranslationResult> {

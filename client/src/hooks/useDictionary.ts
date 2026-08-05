@@ -30,28 +30,32 @@ export function useDictionary() {
   const search = useCallback(async (word: string, language = 'en') => {
     if (!word.trim()) return;
     abortRef.current?.abort();
-    abortRef.current = new AbortController();
+    const controller = new AbortController();
+    abortRef.current = controller;
+    const signal = controller.signal;
     setLoading(true);
     setError(null);
+    setEntries([]);
+    setRelatedWords(null);
     try {
       const [entriesResult, relatedResult] = await Promise.all([
-        searchWord(word, language),
-        getRelatedWords(word).catch(() => null),
+        searchWord(word, language, signal),
+        getRelatedWords(word, signal).catch(() => null),
       ]);
+      if (signal.aborted) return null;
       setEntries(entriesResult);
       setRelatedWords(relatedResult);
       return entriesResult;
     } catch (err: any) {
+      if (signal.aborted) return null;
       if (err?.status === 404) {
         setError(`No definitions found for "${word}"`);
       } else {
         setError(err?.message ?? 'Failed to look up word');
       }
-      setEntries([]);
-      setRelatedWords(null);
       return null;
     } finally {
-      setLoading(false);
+      if (!signal.aborted) setLoading(false);
     }
   }, []);
 

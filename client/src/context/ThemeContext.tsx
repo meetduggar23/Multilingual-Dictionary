@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { STORAGE_KEYS } from '@dictionary/shared';
 
 type Theme = 'light' | 'dark';
 
@@ -9,7 +10,8 @@ interface ThemeContextValue {
   setTheme: (theme: Theme) => void;
 }
 
-const STORAGE_KEY = 'lexi-theme';
+const STORAGE_KEY = STORAGE_KEYS.theme;
+const LEGACY_STORAGE_KEY = 'lexi-theme';
 const META_THEME_COLORS: Record<Theme, string> = {
   light: '#FAF7F2',
   dark: '#0B0F19',
@@ -20,7 +22,7 @@ const ThemeContext = React.createContext<ThemeContextValue | undefined>(undefine
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light';
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    const stored = window.localStorage.getItem(STORAGE_KEY) ?? window.localStorage.getItem(LEGACY_STORAGE_KEY);
     if (stored === 'light' || stored === 'dark') return stored;
   } catch {
     /* ignore */

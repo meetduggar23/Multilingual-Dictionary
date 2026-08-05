@@ -6,18 +6,8 @@ import { useSpeech } from '@/hooks/useVoice';
 import { EditorCard } from './EditorCard';
 import { toast } from 'sonner';
 
-const LEVELS = [
-  { value: 'a1', label: 'A1 (Beginner)' },
-  { value: 'a2', label: 'A2 (Elementary)' },
-  { value: 'b1', label: 'B1 (Intermediate)' },
-  { value: 'b2', label: 'B2 (Upper Intermediate)' },
-  { value: 'c1', label: 'C1 (Advanced)' },
-  { value: 'c2', label: 'C2 (Proficiency)' },
-];
-
 export function DictionaryEditor() {
   const [word, setWord] = useState('');
-  const [level, setLevel] = useState('a1');
   const [editorContent, setEditorContent] = useState('');
   const { entries, relatedWords, loading, error, search } = useDictionary();
   const { speak, speaking, stop } = useSpeech();
@@ -95,18 +85,6 @@ export function DictionaryEditor() {
               <Languages className="h-4 w-4" />
             </button>
           </div>
-
-          {/* Level Select */}
-          <label className="label-premium mb-2 block">Level</label>
-          <select
-            value={level}
-            onChange={(e) => setLevel(e.target.value)}
-            className="select-premium mb-6"
-          >
-            {LEVELS.map((l) => (
-              <option key={l.value} value={l.value}>{l.label}</option>
-            ))}
-          </select>
 
           {/* Generate Button */}
           <button

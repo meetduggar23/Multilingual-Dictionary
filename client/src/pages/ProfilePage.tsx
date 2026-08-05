@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -18,11 +18,12 @@ import { Footer } from '@/components/common/Footer';
 import { useFavorites, useHistory, useAnalytics } from '@/hooks/useDictionary';
 
 export default function ProfilePage() {
-  const user = (() => { try { return JSON.parse(localStorage.getItem('dict:user') ?? 'null'); } catch { return null; } })();
-  const token = localStorage.getItem('dict:token');
+  const user = (() => { try { return JSON.parse(localStorage.getItem('dict:user') ?? sessionStorage.getItem('dict:user') ?? 'null'); } catch { return null; } })();
+  const token = localStorage.getItem('dict:token') ?? sessionStorage.getItem('dict:token');
   const { favorites, fetchAll: fetchFavs } = useFavorites();
   const { history, fetchAll: fetchHistory } = useHistory();
   const { summary, fetch: fetchAnalytics } = useAnalytics();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -35,7 +36,9 @@ export default function ProfilePage() {
   const handleLogout = () => {
     localStorage.removeItem('dict:token');
     localStorage.removeItem('dict:user');
-    window.location.href = '/';
+    sessionStorage.removeItem('dict:token');
+    sessionStorage.removeItem('dict:user');
+    navigate('/');
   };
 
   const initials = (user?.name ?? 'U')

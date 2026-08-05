@@ -38,18 +38,17 @@ export default function QuizPage() {
     if (!quiz) return;
     if (currentIndex + 1 >= quiz.questions.length) {
       setFinished(true);
-      submit(score + (selected === quiz.questions[currentIndex]?.answer ? 0 : 0), quiz.questions.length, difficulty)
-        .catch(() => {});
+      submit(score, quiz.questions.length, difficulty).catch(() => {});
       toast.success('Quiz complete!');
     } else {
       setCurrentIndex((i) => i + 1);
       setSelected(null);
       setShowResult(false);
     }
-  }, [quiz, currentIndex, score, selected, submit, difficulty]);
+  }, [quiz, currentIndex, score, submit, difficulty]);
 
   const q = quiz?.questions[currentIndex];
-  const totalCorrect = score + (showResult && selected === q?.answer ? 1 : 0);
+  const totalCorrect = score;
 
   return (
     <div className="min-h-screen flex flex-col">

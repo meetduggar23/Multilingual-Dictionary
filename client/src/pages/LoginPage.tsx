@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -94,6 +94,7 @@ export default function LoginPage() {
   const [remember, setRemember] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,16 +105,26 @@ export default function LoginPage() {
     setLoading(true);
     try {
       const { token, user } = await api.post<{ token: string; user: any }>('/auth/login', { email, password });
-      localStorage.setItem('dict:token', token);
-      localStorage.setItem('dict:user', JSON.stringify(user));
+      const store = remember ? localStorage : sessionStorage;
+      store.setItem('dict:token', token);
+      store.setItem('dict:user', JSON.stringify(user));
+      if (!remember) {
+        localStorage.removeItem('dict:token');
+        localStorage.removeItem('dict:user');
+      }
       toast.success(`Welcome back, ${user.name}!`);
-      navigate('/');
+      const from = (location.state as { from?: string } | null)?.from;
+      navigate(from && from !== '/login' ? from : '/');
     } catch (err: any) {
       toast.error(err?.message ?? 'Login failed');
     } finally {
       setLoading(false);
     }
-  }, [email, password, navigate]);
+  }, [email, password, remember, navigate, location.state]);
+
+  const handleSocial = useCallback((label: string) => {
+    toast.info(`${label} sign-in isn't configured yet. Use email instead.`);
+  }, []);
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-background lg:h-screen lg:overflow-hidden">
@@ -285,6 +296,7 @@ export default function LoginPage() {
                     type="button"
                     aria-label={`Continue with ${label}`}
                     title={`Continue with ${label}`}
+                    onClick={() => handleSocial(label)}
                     className="group flex h-[52px] items-center justify-center rounded-2xl border border-cream-400 bg-card transition-all duration-200 hover:-translate-y-0.5 hover:border-cream-500 hover:shadow-card"
                   >
                     <Icon className="h-[22px] w-[22px]" />
@@ -351,7 +363,11 @@ export default function LoginPage() {
                     />
                     <span className="text-[14px] font-medium text-navy/60">Remember me</span>
                   </label>
-                  <button type="button" className="text-[14px] font-semibold text-orange-500 hover:underline">
+                  <button
+                    type="button"
+                    onClick={() => toast.info('Password reset is not available yet.')}
+                    className="text-[14px] font-semibold text-orange-500 hover:underline"
+                  >
                     Forgot Password?
                   </button>
                 </div>
