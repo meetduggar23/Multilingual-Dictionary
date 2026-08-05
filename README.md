@@ -2,7 +2,7 @@
 
 An AI-powered multilingual dictionary with translation, pronunciation, quizzes, and daily words.
 
-> Free APIs used by this dictionary repo:
+> # Free APIs used by this Multilingual-Dictionary
 
 | Feature | API | Official Link |
 | --- | --- | --- |
